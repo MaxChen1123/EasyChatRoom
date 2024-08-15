@@ -52,7 +52,7 @@ func process(conn net.Conn) {
     }
     who:=string(nameByte[:n])
     entering<-ch
-    messages<-who+" has connected at "+time.Now().Format("15:04:05")
+    messages<-who+" has connected at "+getTimeNow()
     reader := bufio.NewReader(conn)
     go clientWriter(conn,ch)
     fmt.Println(who,"has connected")
@@ -62,12 +62,16 @@ func process(conn net.Conn) {
         if err!=nil{
             fmt.Printf("something wrong:%s\n",err)
             leaving<-ch
-            messages<-who+" has leaved at "+time.Now().Format("15:04:05")
+            messages<-who+" has leaved at "+getTimeNow()
             return
         }
         recvStr := string(buf[:n])
-        messages<-who+":"+recvStr+"\t\t"+time.Now().Format("15:04:05")
+        messages<-who+":"+recvStr+"\t\t"+getTimeNow()
     }
+}
+
+func getTimeNow() string {
+    return time.Now().Format("15:04:05")
 }
 
 func main() {
