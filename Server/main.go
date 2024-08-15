@@ -82,6 +82,7 @@ func main() {
         return
     }
     go broadcaster()
+    defer listen.Close()
     for {
         conn, err := listen.Accept()
         if err != nil {
