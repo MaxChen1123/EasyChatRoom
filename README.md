@@ -1,4 +1,4 @@
-# a Easy ChatRoom Implemented by Golang
+# a Simple ChatRoom Implemented by Golang
 to start the server:
 ```shell
 go run ./Server/main.go -port 8888
