@@ -20,7 +20,7 @@ func serverReader(conn net.Conn){
     for{
         message,err:=reader.ReadString('\n')
         if err!=nil{
-            fmt.Println("err:",err)
+            fmt.Println("read from server---err:",err)
             return
         }
         fmt.Print(message)
@@ -47,6 +47,7 @@ func main() {
         }
         _, err = conn.Write([]byte(inputInfo))
         if err != nil {
+            fmt.Println("write to server---err:", err)
             return
         }
     }
